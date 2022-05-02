@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+
+
 class Tag(models.Model):
     '''Tag model to associate tag with content'''
 
@@ -22,6 +24,15 @@ class Content(models.Model):
 
     def __str__(self):
         return self.topic
+
+class Comment(models.Model):
+    '''Comment associated with content'''
+
+    comment=models.CharField(max_length=100,blank=True)
+    content=models.ForeignKey(Content,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.comment
 
 
 

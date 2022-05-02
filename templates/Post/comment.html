@@ -1,0 +1,17 @@
+<html>
+<h1>Add Post</h1>
+<form method="POST">
+    {% csrf_token %}
+    <div>
+        <div>
+            {{form.comment.label}}
+        </div>
+        <div>
+            {{form.comment}}
+        </div>
+    </div>
+    <div>
+        <input type="submit" name="Add Comment">
+    </div>
+</form>
+</html>

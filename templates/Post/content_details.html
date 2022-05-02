@@ -10,4 +10,13 @@
        <p>{{t.tag_name}}</p>
     {% endfor %}
 </div>
+<div>
+    <h4>Comment</h4>
+    {% for c in comments %}
+       <p>{{c.comment}}</p>
+    {% endfor %}
+</div>
+<div>
+    <a href={{content.id}}/addcomment>Add Comment</a>
+</div>
 </html>

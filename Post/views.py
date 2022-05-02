@@ -4,6 +4,8 @@ from .forms import PostForm
 from .models import Content
 from .models import Tag
 from .forms import TagForm
+from .forms import CommentForm
+from .models import Comment
 
 def create_post(request):
     '''This method is used to create posts in the account'''
@@ -49,7 +51,8 @@ def content_details(request,id):
 
     content=Content.objects.get(pk=id)
     tags=content.tag_name.all()
-    return render(request,"Post/content_details.html",{'content':content,'tags':tags})
+    comments=Comment.objects.filter(content=content)
+    return render(request,"Post/content_details.html",{'content':content,'tags':tags,'comments':comments})
 
 
 def create_tag(request):
@@ -104,6 +107,27 @@ def add_all_article_tag(request):
            return HttpResponse("<h1>No contents by this tag name</h1>")
     else:
         return render(request,"Post/tag_filter.html",{'form':tag_form})
+
+
+def add_comment(request,id):
+    content=Content.objects.get(pk=id)
+    if request.method=="POST":
+        comment_form=CommentForm(request.POST)
+        if comment_form.is_valid():
+            comment=request.POST.get("comment")
+            comm=Comment(comment=comment,content=content)
+            comm.save()
+            return redirect("Post:postdetails",id=content.id)
+        else:
+            return HttpResponse("<h1>Error</h1>")
+    else:
+        comment_form=CommentForm()
+        return render(request,"Post/comment.html",{'form':comment_form})
+
+
+
+
+
 
 
 
