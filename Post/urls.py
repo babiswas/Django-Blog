@@ -11,4 +11,5 @@ urlpatterns=[
     path('alltags/',views.get_all_tag,name="tags"),
     path('addtag/',views.create_tag,name="addtag"),
     path('tagtopost/<int:postid>',views.add_tag_post_id,name="tagpost"),
+    path('postbytag/',views.add_all_article_tag,name="posttag"),
 ]

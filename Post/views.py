@@ -75,6 +75,7 @@ def get_all_tag(request):
 
 def add_tag_post_id(request,postid):
     '''Add tags to content'''
+
     post=Content.objects.get(pk=int(postid))
     tag_name=request.GET.get("tag_name",None)
     if tag_name:
@@ -90,12 +91,20 @@ def add_tag_post_id(request,postid):
         return render(request,"Post/add_tag_post.html",{"post":post,"form":tag_search_form})
 
 def add_all_article_tag(request):
+    '''Get all the articles by tag'''
+
+    tag_form=TagForm()
     tag_name=request.GET.get("tag_name",None)
     if tag_name:
-        tag_name = Tag.objects.filter(tag_name=tag_name)
-        if list(tag_name):
-           tag_name.
+        tag = Tag.objects.filter(tag_name=tag_name)
+        if list(tag):
+           posts=tag[0].content_set.all()
+           return render(request,"Post/all_post.html",{"posts":posts})
+        else:
+           return HttpResponse("<h1>No contents by this tag name</h1>")
     else:
+        return render(request,"Post/tag_filter.html",{'form':tag_form})
+
 
 
 
