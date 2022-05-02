@@ -1,0 +1,13 @@
+<html>
+<h1>All Posts</h1>
+  <div>
+      {% for p in posts %}
+         <div>
+             <h1>{{p.topic}}</h1>
+             <p>{{p.content}}</p>
+             <li>{{p.author.username}}</li>
+             <li>{{p.createdon}}</li>
+         </div>
+      {% endfor %}
+  </div>
+</html>

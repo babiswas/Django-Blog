@@ -1,0 +1,26 @@
+<html>
+<div>
+    <h1>Content</h1>
+    <h2>{{post.topic}}</h2>
+    <p>{{post.content}}</p>
+    <p>{{post.author.username}}</p>
+    <p>{{post.createdon}}</p>
+</div>
+<div>
+    <h2>Add Tag</h2>
+    <form method="GET" action={{post.id}}>
+        <div>
+            <div>
+                {{form.tag_name.label}}
+            </div>
+            <div>
+                {{form.tag_name}}
+            </div>
+            <div>
+                    <td></td>
+                    <td><input type="submit" value="Submit"></td>
+                </>
+        </div>
+    </form>
+</div>
+</html>

@@ -1,0 +1,17 @@
+<html>
+<h1>Add Tags</h1>
+<form method="POST">
+    {% csrf_token %}
+    <div>
+        <div>
+            {{form.tag_name.label}}
+        </div>
+        <div>
+            {{form.tag_name}}
+        </div>
+    </div>
+    <div>
+        <input type="submit" name="Add Tag">
+    </div>
+</form>
+</html>

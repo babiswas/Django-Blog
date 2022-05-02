@@ -1,0 +1,13 @@
+<html>
+<h1>Content</h1>
+<h2>{{content.topic}}</h2>
+<p>{{content.content}}</p>
+<p>{{content.author.username}}</p>
+<p>{{content.createdon}}</p>
+<div>
+    <h4>Tags</h4>
+    {% for t in tags %}
+       <p>{{t.tag_name}}</p>
+    {% endfor %}
+</div>
+</html>

@@ -1,0 +1,41 @@
+<html>
+<h1>Add Post</h1>
+<form method="POST">
+    {% csrf_token %}
+    <div>
+        <div>
+            {{form.username.label}}
+        </div>
+        <div>
+            {{form.username}}
+        </div>
+    </div>
+    <div>
+        <div>
+           {{form.email.label}}
+        </div>
+        <div>
+            {{form.email}}
+        </div>
+    </div>
+    <div>
+        <div>
+           {{form.password1.label}}
+        </div>
+        <div>
+            {{form.password1}}
+        </div>
+    </div>
+    <div>
+        <div>
+           {{form.password2.label}}
+        </div>
+        <div>
+            {{form.password2}}
+        </div>
+    </div>
+    <div>
+        <input type="submit" name="Add User">
+    </div>
+</form>
+</html>
