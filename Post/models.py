@@ -29,7 +29,7 @@ class Comment(models.Model):
     '''Comment associated with content'''
 
     comment=models.CharField(max_length=100,blank=True)
-    content=models.ForeignKey(Content,on_delete=models.CASCADE)
+    content=models.ForeignKey(Content,on_delete=models.CASCADE,related_name='comments')
 
     def __str__(self):
         return self.comment

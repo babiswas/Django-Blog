@@ -6,7 +6,7 @@ from .models import Tag
 from .forms import TagForm
 from .forms import CommentForm
 from .models import Comment
-from .serializer import TagSerializer
+from .serializer import TagSerializer,ContentSerializer
 from rest_framework.renderers import JSONRenderer
 
 def create_post(request):
@@ -132,6 +132,29 @@ def tag_api(request,id):
     serializer=TagSerializer(tag)
     json_data=JSONRenderer().render(serializer.data)
     return HttpResponse(json_data,content_type='application/json')
+
+def all_tags_api(request):
+    tags=Tag.objects.all()
+    serializer = TagSerializer(tags,many=True)
+    json_data = JSONRenderer().render(serializer.data)
+    return HttpResponse(json_data, content_type='application/json')
+
+
+def content_data(request,id):
+    content = Content.objects.get(pk=id)
+    serializer = ContentSerializer(content)
+    json_data = JSONRenderer().render(serializer.data)
+    return HttpResponse(json_data, content_type='application/json')
+
+
+def all_content_data(request):
+    contents = Content.objects.all()
+    serializer = ContentSerializer(contents,many=True)
+    json_data = JSONRenderer().render(serializer.data)
+    return HttpResponse(json_data, content_type='application/json')
+
+
+
 
 
 

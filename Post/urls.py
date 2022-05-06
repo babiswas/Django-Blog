@@ -13,5 +13,8 @@ urlpatterns=[
     path('tagtopost/<int:postid>',views.add_tag_post_id,name="tagpost"),
     path('postbytag/',views.add_all_article_tag,name="posttag"),
     path('post_details/<int:id>/addcomment',views.add_comment,name="postcomment"),
-    path('api/tags/<int:id>',views.tag_api,name="alltags"),
+    path('api/tag/<int:id>',views.tag_api,name="tag"),
+    path('api/tags/',views.all_tags_api,name="tagsall"),
+    path('api/content/<int:id>',views.content_data,name="contentdata"),
+    path('api/contents/',views.all_content_data,name="contentsdata"),
 ]
