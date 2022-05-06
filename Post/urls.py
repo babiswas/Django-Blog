@@ -13,4 +13,5 @@ urlpatterns=[
     path('tagtopost/<int:postid>',views.add_tag_post_id,name="tagpost"),
     path('postbytag/',views.add_all_article_tag,name="posttag"),
     path('post_details/<int:id>/addcomment',views.add_comment,name="postcomment"),
+    path('api/tags/<int:id>',views.tag_api,name="alltags"),
 ]

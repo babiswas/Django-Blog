@@ -6,6 +6,8 @@ from .models import Tag
 from .forms import TagForm
 from .forms import CommentForm
 from .models import Comment
+from .serializer import TagSerializer
+from rest_framework.renderers import JSONRenderer
 
 def create_post(request):
     '''This method is used to create posts in the account'''
@@ -123,6 +125,14 @@ def add_comment(request,id):
     else:
         comment_form=CommentForm()
         return render(request,"Post/comment.html",{'form':comment_form})
+
+
+def tag_api(request,id):
+    tag=Tag.objects.get(pk=id)
+    serializer=TagSerializer(tag)
+    json_data=JSONRenderer().render(serializer.data)
+    return HttpResponse(json_data,content_type='application/json')
+
 
 
 
