@@ -81,6 +81,8 @@ def all_authors(request):
 
 @api_view(['GET',])
 def all_author_contents(request):
+    '''Api to fetch the author related contents'''
+
     users=User.objects.all()
     paginator=Paginator(users,2)
     page=request.GET.get('page')
