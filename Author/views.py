@@ -6,6 +6,10 @@ from django.http import HttpResponse
 from django.contrib import auth
 from .serializer import AuthorSerializer,AuthorContentSerializer
 from rest_framework.renderers import JSONRenderer
+from rest_framework.generics import ListAPIView
+from rest_framework.pagination import PageNumberPagination
+from rest_framework.decorators import api_view
+from django.core.paginator import Paginator
 
 def register(request):
         '''User can register himself using this function'''
@@ -75,14 +79,15 @@ def all_authors(request):
     json_data=JSONRenderer().render(serializer.data)
     return HttpResponse(json_data,content_type='application/json')
 
+@api_view(['GET',])
 def all_author_contents(request):
     users=User.objects.all()
-    serializer=AuthorContentSerializer(users,many=True)
+    paginator=Paginator(users,2)
+    page=request.GET.get('page')
+    page_obj=paginator.get_page(page)
+    serializer=AuthorContentSerializer(page_obj,many=True)
     json_data=JSONRenderer().render(serializer.data)
-    return HttpResponse(json_data, content_type='application/json')
-
-
-
+    return HttpResponse(json_data,content_type='application/json')
 
 
 

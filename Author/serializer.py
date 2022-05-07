@@ -2,6 +2,7 @@ from rest_framework import serializers
 from Post.serializer import ContentSerializer
 from django.contrib.auth.models import User
 
+
 class AuthorSerializer(serializers.Serializer):
     '''Serializer to display all authors'''
 
