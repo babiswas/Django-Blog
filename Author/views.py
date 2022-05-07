@@ -4,6 +4,8 @@ from django.shortcuts import redirect
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.contrib import auth
+from .serializer import AuthorSerializer,AuthorContentSerializer
+from rest_framework.renderers import JSONRenderer
 
 def register(request):
         '''User can register himself using this function'''
@@ -65,6 +67,22 @@ def logout(request):
 
     auth.logout(request)
     return render(request,"Author/login.html")
+
+
+def all_authors(request):
+    users=User.objects.all()
+    serializer=AuthorSerializer(users,many=True)
+    json_data=JSONRenderer().render(serializer.data)
+    return HttpResponse(json_data,content_type='application/json')
+
+def all_author_contents(request):
+    users=User.objects.all()
+    serializer=AuthorContentSerializer(users,many=True)
+    json_data=JSONRenderer().render(serializer.data)
+    return HttpResponse(json_data, content_type='application/json')
+
+
+
 
 
 
